@@ -68,13 +68,15 @@
   }
 
   .logout-item {
-    margin-top: 20px;
-    
     a {
       background-color: rgba(220, 53, 69, 0.2);
       
       &:hover {
         background-color: rgba(220, 53, 69, 0.3);
+      }
+      
+      i {
+        margin-left: 5px;
       }
     }
   }

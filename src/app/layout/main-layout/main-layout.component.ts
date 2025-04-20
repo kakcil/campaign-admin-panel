@@ -15,7 +15,7 @@ import { CommonModule } from '@angular/common';
 })
 export class MainLayoutComponent implements OnInit, OnDestroy {
   campaignCount: number = 0;
-  pageTitle: string = 'Campaign Management';
+  pageTitle: string = 'Campaign Admin Panel';
   sidebarOpen: boolean = false;
   private subscription: Subscription = new Subscription();
 
@@ -68,7 +68,7 @@ export class MainLayoutComponent implements OnInit, OnDestroy {
     } else if (url.includes('/dashboard/create')) {
       this.pageTitle = 'Create New Campaign';
     } else {
-      this.pageTitle = 'Campaign Management';
+      this.pageTitle = 'Campaign Admin Panel';
     }
   }
 

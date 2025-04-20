@@ -86,6 +86,10 @@ label {
   &:hover {
     background-color: var(--primary-dark);
   }
+  
+  i {
+    margin-left: 5px;
+  }
 }
 
 /* Responsive styles */

@@ -52,7 +52,7 @@ src/
 
 ---
 
-# Campaign Management Panel [EN]
+# Campaign Admin Panel [EN]
 
 Modern, user-friendly Angular-based web application for campaign management operations.
 
