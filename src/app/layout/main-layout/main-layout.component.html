@@ -1,7 +1,11 @@
 <div class="layout">
   <aside class="sidebar">
+    <div class="sidebar-header">
+      <h2 class="company-name">Moneytolia</h2>
+      <p class="app-name">Campaign Manager</p>
+    </div>
     <ul>
-      <li><a routerLink="/dashboard/campaigns">List Campaigns</a></li>
+      <li><a routerLink="/dashboard/campaigns" (click)="updateCampaignCount()">List Campaigns ({{campaignCount}})</a></li>
       <li><a routerLink="/dashboard/create">Create Campaign</a></li>
     </ul>
   </aside>

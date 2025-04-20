@@ -1,14 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule, NgFor, NgIf } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-
-interface Campaign {
-  id: number;
-  title: string;
-  description: string;
-  score: number;
-  date: string;
-}
+import { CampaignService, Campaign } from '../../services/campaign.service';
 
 @Component({
   selector: 'app-campaign-list',
@@ -21,45 +14,35 @@ export class CampaignListComponent implements OnInit {
   campaigns: Campaign[] = [];
   selectedCampaign: Campaign | null = null;
 
+  constructor(private campaignService: CampaignService) {}
+
   ngOnInit(): void {
     this.loadCampaigns();
   }
 
   loadCampaigns() {
-    const data = localStorage.getItem('campaigns');
-    this.campaigns = data ? JSON.parse(data) : [];
+    this.campaigns = this.campaignService.getCampaigns();
   }
 
   changeScore(id: number, value: number) {
-    const index = this.campaigns.findIndex(c => c.id === id);
-    if (index !== -1) {
-      this.campaigns[index].score += value;
-      this.saveToStorage();
-    }
+    this.campaignService.changeScore(id, value);
+    this.loadCampaigns(); //updates the list
   }
 
   deleteCampaign(id: number) {
-    this.campaigns = this.campaigns.filter(c => c.id !== id);
-    this.saveToStorage();
+    this.campaignService.deleteCampaign(id);
+    this.loadCampaigns(); //updates the list
   }
 
   openUpdateModal(campaign: Campaign) {
-    this.selectedCampaign = { ...campaign }; //creates a copy
+    this.selectedCampaign = { ...campaign }; //creates a copy of the campaign object
   }
 
   updateCampaign() {
     if (!this.selectedCampaign) return;
     
-    const index = this.campaigns.findIndex(c => c.id === this.selectedCampaign!.id);
-    if (index !== -1) {
-      this.campaigns[index].title = this.selectedCampaign.title;
-      this.campaigns[index].description = this.selectedCampaign.description;
-      this.saveToStorage();
-    }
+    this.campaignService.updateCampaign(this.selectedCampaign);
+    this.loadCampaigns(); //updates the list
     this.selectedCampaign = null;
-  }
-
-  saveToStorage() {
-    localStorage.setItem('campaigns', JSON.stringify(this.campaigns));
   }
 }

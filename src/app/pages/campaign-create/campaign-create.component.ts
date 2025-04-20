@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { NgIf } from '@angular/common';
+import { Router } from '@angular/router';
+import { CampaignService } from '../../services/campaign.service';
 
 @Component({
   selector: 'app-campaign-create',
@@ -14,6 +16,11 @@ export class CampaignCreateComponent {
   description: string = '';
   successMessage: string = '';
 
+  constructor(
+    private router: Router,
+    private campaignService: CampaignService
+  ) {}
+
   createCampaign() {
     const newCampaign = {
       id: Date.now(),
@@ -23,14 +30,13 @@ export class CampaignCreateComponent {
       date: new Date().toISOString().split('T')[0]
     };
 
-    const campaigns = JSON.parse(localStorage.getItem('campaigns') || '[]');
-    campaigns.push(newCampaign);
-    localStorage.setItem('campaigns', JSON.stringify(campaigns));
-
+    this.campaignService.saveCampaign(newCampaign);
+    
     this.successMessage = 'Campaign successfully added.';
 
     setTimeout(() => {
       this.successMessage = '';
+      this.router.navigate(['/dashboard/campaigns']);
     }, 2000);
 
     this.title = '';
