@@ -11,12 +11,12 @@
   .list-info h2 {
     margin: 0;
     font-size: 20px;
-    color: #2c3e50;
+    color: var(--on-surface-high);
   }
   
   .create-button {
-    background-color: #28a745;
-    color: white;
+    background-color: var(--success);
+    color: var(--success-contrast);
     border: none;
     border-radius: 4px;
     padding: 10px 16px;
@@ -27,59 +27,59 @@
     align-items: center;
     
     &:hover {
-      background-color: #218838;
+      background-color: var(--success-dark);
     }
   }
 }
 
 .no-campaigns {
-  background-color: #f8f9fa;
-  border: 1px solid #dee2e6;
+  background-color: var(--tertiary);
+  border: 1px solid var(--border-color);
   border-radius: 8px;
   padding: 20px;
   text-align: center;
-  color: #6c757d;
+  color: var(--on-surface-low);
   margin: 20px 0;
 }
 
 .campaign-card {
-  background-color: white;
+  background-color: var(--surface);
   border-radius: 8px;
   padding: 0;
   margin-bottom: 20px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 4px var(--shadow-color);
   transition: transform 0.2s;
   display: flex;
   overflow: hidden;
-  border-left: 4px solid #eaeaea;
+  border-left: 4px solid var(--border-color);
 
   &:hover {
     transform: translateY(-2px);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 8px var(--shadow-color);
   }
 }
 
 .score-section {
-  background-color: #f8f9fa;
+  background-color: var(--tertiary);
   padding: 15px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   min-width: 90px;
-  border-right: 1px solid #eaeaea;
+  border-right: 1px solid var(--border-color);
   position: relative;
 
   .score-value {
     font-size: 28px;
     font-weight: 700;
     margin-bottom: 5px;
-    color: #2c3e50;
+    color: var(--on-surface-high);
   }
 
   .score-label {
     font-size: 14px;
-    color: #6c757d;
+    color: var(--on-surface-low);
     margin-bottom: 15px;
   }
 
@@ -100,23 +100,23 @@
     padding: 0;
     cursor: pointer;
     border: none;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 4px var(--shadow-color);
     
     &.inc {
-      background-color: #28a745;
-      color: white;
+      background-color: var(--success);
+      color: var(--success-contrast);
       
       &:hover {
-        background-color: #218838;
+        background-color: var(--success-dark);
       }
     }
     
     &.dec {
-      background-color: #dc3545;
-      color: white;
+      background-color: var(--danger);
+      color: var(--danger-contrast);
       
       &:hover {
-        background-color: #c82333;
+        background-color: var(--danger-dark);
       }
     }
   }
@@ -132,12 +132,12 @@
 
   .campaign-title {
     margin: 0 0 10px 0;
-    color: #2c3e50;
+    color: var(--on-surface-high);
     font-size: 18px;
   }
 
   .campaign-description {
-    color: #6c757d;
+    color: var(--on-surface-low);
     margin: 0;
     font-size: 14px;
     line-height: 1.5;
@@ -153,7 +153,7 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  border-left: 1px solid #eaeaea;
+  border-left: 1px solid var(--border-color);
   min-width: 150px;
 
   .action-buttons {
@@ -171,20 +171,20 @@
   }
 
   .update-button {
-    background-color: #17a2b8;
-    color: white;
+    background-color: var(--info);
+    color: var(--info-contrast);
     
     &:hover {
-      background-color: #138496;
+      background-color: var(--info-dark);
     }
   }
   
   .delete-button {
-    background-color: #dc3545;
-    color: white;
+    background-color: var(--danger);
+    color: var(--danger-contrast);
     
     &:hover {
-      background-color: #c82333;
+      background-color: var(--danger-dark);
     }
   }
 
@@ -194,12 +194,12 @@
     font-size: 12px;
     
     .date-label {
-      color: #6c757d;
+      color: var(--on-surface-low);
       margin-bottom: 2px;
     }
     
     .date-value {
-      color: #212529;
+      color: var(--on-surface-high);
     }
   }
 }
@@ -218,18 +218,18 @@
 }
 
 .modal {
-  background-color: white;
+  background-color: var(--surface);
   border-radius: 8px;
   padding: 20px;
   width: 500px;
   max-width: 90%;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 4px 12px var(--shadow-color);
   
   h3 {
     margin-top: 0;
     margin-bottom: 20px;
-    color: #2c3e50;
-    border-bottom: 1px solid #eaeaea;
+    color: var(--on-surface-high);
+    border-bottom: 1px solid var(--border-color);
     padding-bottom: 10px;
   }
   
@@ -240,18 +240,18 @@
       display: block;
       margin-bottom: 5px;
       font-weight: 500;
-      color: #495057;
+      color: var(--on-surface-medium);
     }
     
     .form-control {
       width: 100%;
       padding: 8px 12px;
-      border: 1px solid #ced4da;
+      border: 1px solid var(--border-color);
       border-radius: 4px;
       font-size: 14px;
       
       &:focus {
-        border-color: #80bdff;
+        border-color: var(--primary);
         outline: 0;
         box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
       }
@@ -273,20 +273,20 @@
     }
     
     .update-button {
-      background-color: #17a2b8;
-      color: white;
+      background-color: var(--info);
+      color: var(--info-contrast);
       
       &:hover {
-        background-color: #138496;
+        background-color: var(--info-dark);
       }
     }
     
     .cancel-button {
-      background-color: #6c757d;
-      color: white;
+      background-color: var(--on-surface-low);
+      color: var(--surface);
       
       &:hover {
-        background-color: #5a6268;
+        background-color: var(--on-surface-medium);
       }
     }
   }
@@ -302,7 +302,7 @@
     width: 100%;
     justify-content: space-between;
     border-right: none;
-    border-bottom: 1px solid #eaeaea;
+    border-bottom: 1px solid var(--border-color);
     
     .score-value {
       margin-bottom: 0;
@@ -316,7 +316,7 @@
   
   .content-section {
     width: 100%;
-    border-bottom: 1px solid #eaeaea;
+    border-bottom: 1px solid var(--border-color);
     padding-bottom: 15px;
   }
   

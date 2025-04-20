@@ -19,8 +19,8 @@ export class LoginComponent implements OnInit {
   constructor(
     private authService: AuthService,
     private router: Router
-  ) { }
-  
+  ) {}
+
   ngOnInit(): void {
     //if already logged in, redirects to dashboard
     if (this.authService.isLoggedIn()) {
@@ -28,8 +28,15 @@ export class LoginComponent implements OnInit {
     }
   }
 
-  onLogin(): void {
-    if (this.authService.login(this.username, this.password)) {
+  onLogin() {
+    if (!this.username || !this.password) {
+      this.errorMessage = 'Username and password are required!';
+      return;
+    }
+
+    const isLoggedIn = this.authService.login(this.username, this.password);
+    
+    if (isLoggedIn) {
       this.router.navigate(['/dashboard']);
     } else {
       this.errorMessage = 'Invalid username or password!';

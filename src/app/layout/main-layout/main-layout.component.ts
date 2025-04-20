@@ -4,17 +4,19 @@ import { AuthService } from '../../services/auth.service';
 import { CampaignService } from '../../services/campaign.service';
 import { filter } from 'rxjs/operators';
 import { Subscription } from 'rxjs';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-main-layout',
   standalone: true,
-  imports: [RouterModule, RouterOutlet],
+  imports: [RouterModule, RouterOutlet, CommonModule],
   templateUrl: './main-layout.component.html',
   styleUrl: './main-layout.component.scss'
 })
 export class MainLayoutComponent implements OnInit, OnDestroy {
   campaignCount: number = 0;
   pageTitle: string = 'Campaign Management';
+  sidebarOpen: boolean = false;
   private subscription: Subscription = new Subscription();
 
   constructor(
@@ -43,7 +45,7 @@ export class MainLayoutComponent implements OnInit, OnDestroy {
       })
     );
 
-    // İlk yüklemede sayfa başlığını ayarla
+    //sets the page title on initial load
     this.updatePageTitle(this.router.url);
   }
 
@@ -62,11 +64,15 @@ export class MainLayoutComponent implements OnInit, OnDestroy {
 
   updatePageTitle(url: string) {
     if (url.includes('/dashboard/campaigns')) {
-      this.pageTitle = 'List Campaigns';
+      this.pageTitle = 'Campaign List';
     } else if (url.includes('/dashboard/create')) {
-      this.pageTitle = 'Create Campaign';
+      this.pageTitle = 'Create New Campaign';
     } else {
       this.pageTitle = 'Campaign Management';
     }
+  }
+
+  toggleSidebar() {
+    this.sidebarOpen = !this.sidebarOpen;
   }
 }

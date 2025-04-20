@@ -35,6 +35,11 @@ export class CampaignService {
   }
 
   updateCampaign(campaign: Campaign): void {
+    //score cannot be negative, if it is, it is set to 0
+    if (campaign.score < 0) {
+      campaign.score = 0;
+    }
+    
     const campaigns = this.getCampaigns();
     const index = campaigns.findIndex(c => c.id === campaign.id);
     if (index !== -1) {
@@ -51,8 +56,14 @@ export class CampaignService {
   changeScore(id: number, value: number): void {
     const campaigns = this.getCampaigns();
     const index = campaigns.findIndex(c => c.id === id);
+    
     if (index !== -1) {
-      campaigns[index].score += value;
+      //new score calculation
+      const newScore = campaigns[index].score + value;
+      
+      //if new score is negative, it is set to 0
+      campaigns[index].score = Math.max(0, newScore);
+      
       this.saveCampaigns(campaigns);
     }
   }
