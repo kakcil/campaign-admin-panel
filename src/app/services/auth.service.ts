@@ -5,30 +5,25 @@ import { Router } from '@angular/router';
   providedIn: 'root'
 })
 export class AuthService {
-  private isAuthenticated = false;
+  private readonly AUTH_KEY = 'isLoggedIn';
 
-  constructor(private router: Router) { 
-    //checks user session in case of page refresh
-    this.isAuthenticated = localStorage.getItem('isLoggedIn') === 'true';
-  }
+  constructor(private router: Router) {}
 
   login(username: string, password: string): boolean {
     //simple authentication check
     if (username === 'admin' && password === '1234') {
-      this.isAuthenticated = true;
-      localStorage.setItem('isLoggedIn', 'true');
+      localStorage.setItem(this.AUTH_KEY, 'true');
       return true;
     }
     return false;
   }
 
   logout(): void {
-    this.isAuthenticated = false;
-    localStorage.removeItem('isLoggedIn');
+    localStorage.removeItem(this.AUTH_KEY);
     this.router.navigate(['/login']);
   }
 
   isLoggedIn(): boolean {
-    return this.isAuthenticated;
+    return localStorage.getItem(this.AUTH_KEY) === 'true';
   }
 }
