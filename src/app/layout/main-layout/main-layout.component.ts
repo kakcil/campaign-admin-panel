@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { RouterModule, RouterOutlet, Router, NavigationEnd } from '@angular/router';
+import { RouterModule, RouterOutlet, Router, NavigationEnd, Event } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 import { CampaignService } from '../../services/campaign.service';
 import { filter } from 'rxjs/operators';
@@ -14,6 +14,7 @@ import { Subscription } from 'rxjs';
 })
 export class MainLayoutComponent implements OnInit, OnDestroy {
   campaignCount: number = 0;
+  pageTitle: string = 'Campaign Management';
   private subscription: Subscription = new Subscription();
 
   constructor(
@@ -29,8 +30,9 @@ export class MainLayoutComponent implements OnInit, OnDestroy {
     this.subscription.add(
       this.router.events.pipe(
         filter(event => event instanceof NavigationEnd)
-      ).subscribe(() => {
+      ).subscribe((event: Event) => {
         this.updateCampaignCount();
+        this.updatePageTitle((event as NavigationEnd).url);
       })
     );
 
@@ -40,6 +42,9 @@ export class MainLayoutComponent implements OnInit, OnDestroy {
         this.campaignCount = count;
       })
     );
+
+    // İlk yüklemede sayfa başlığını ayarla
+    this.updatePageTitle(this.router.url);
   }
 
   ngOnDestroy() {
@@ -53,5 +58,15 @@ export class MainLayoutComponent implements OnInit, OnDestroy {
 
   updateCampaignCount() {
     this.campaignCount = this.campaignService.getCampaignCount();
+  }
+
+  updatePageTitle(url: string) {
+    if (url.includes('/dashboard/campaigns')) {
+      this.pageTitle = 'List Campaigns';
+    } else if (url.includes('/dashboard/create')) {
+      this.pageTitle = 'Create Campaign';
+    } else {
+      this.pageTitle = 'Campaign Management';
+    }
   }
 }

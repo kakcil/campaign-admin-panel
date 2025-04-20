@@ -2,6 +2,36 @@
   padding: 20px;
 }
 
+.campaign-list-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  
+  .list-info h2 {
+    margin: 0;
+    font-size: 20px;
+    color: #2c3e50;
+  }
+  
+  .create-button {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 10px 16px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    display: flex;
+    align-items: center;
+    
+    &:hover {
+      background-color: #218838;
+    }
+  }
+}
+
 .no-campaigns {
   background-color: #f8f9fa;
   border: 1px solid #dee2e6;
@@ -68,6 +98,9 @@
     font-size: 18px;
     font-weight: bold;
     padding: 0;
+    cursor: pointer;
+    border: none;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     
     &.inc {
       background-color: #28a745;
@@ -104,7 +137,7 @@
   }
 
   .campaign-description {
-    color: #495057;
+    color: #6c757d;
     margin: 0;
     font-size: 14px;
     line-height: 1.5;
@@ -116,74 +149,58 @@
 }
 
 .actions-section {
-  padding: 15px;
+  padding: 15px 20px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  align-items: flex-end;
-  min-width: 120px;
   border-left: 1px solid #eaeaea;
+  min-width: 150px;
 
   .action-buttons {
     display: flex;
-    flex-direction: column;
-    gap: 8px;
-    width: 100%;
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+
+  .update-button, .delete-button {
+    padding: 5px 10px;
+    border-radius: 4px;
+    border: none;
+    font-size: 12px;
+    cursor: pointer;
+  }
+
+  .update-button {
+    background-color: #17a2b8;
+    color: white;
+    
+    &:hover {
+      background-color: #138496;
+    }
+  }
+  
+  .delete-button {
+    background-color: #dc3545;
+    color: white;
+    
+    &:hover {
+      background-color: #c82333;
+    }
   }
 
   .date-info {
     display: flex;
     flex-direction: column;
-    align-items: flex-end;
-    margin-top: auto;
+    font-size: 12px;
     
     .date-label {
-      font-size: 12px;
       color: #6c757d;
+      margin-bottom: 2px;
     }
     
     .date-value {
-      font-size: 14px;
-      color: #2c3e50;
-      font-weight: 500;
+      color: #212529;
     }
-  }
-}
-
-button {
-  padding: 8px 12px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  font-weight: 500;
-  transition: background-color 0.3s;
-  font-size: 13px;
-}
-
-.update-button {
-  background-color: #17a2b8;
-  color: white;
-
-  &:hover {
-    background-color: #138496;
-  }
-}
-
-.delete-button {
-  background-color: #6c757d;
-  color: white;
-
-  &:hover {
-    background-color: #5a6268;
-  }
-}
-
-.cancel-button {
-  background-color: #6c757d;
-  color: white;
-
-  &:hover {
-    background-color: #5a6268;
   }
 }
 
@@ -195,8 +212,8 @@ button {
   bottom: 0;
   background-color: rgba(0, 0, 0, 0.5);
   display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
   z-index: 1000;
 }
 
@@ -204,47 +221,75 @@ button {
   background-color: white;
   border-radius: 8px;
   padding: 20px;
-  width: 90%;
-  max-width: 500px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-
+  width: 500px;
+  max-width: 90%;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  
   h3 {
     margin-top: 0;
     margin-bottom: 20px;
     color: #2c3e50;
+    border-bottom: 1px solid #eaeaea;
+    padding-bottom: 10px;
   }
-}
-
-.form-group {
-  margin-bottom: 20px;
-
-  label {
-    display: block;
-    margin-bottom: 5px;
-    font-weight: 500;
-    color: #333;
-  }
-
-  .form-control {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    font-size: 16px;
-    transition: border-color 0.3s;
-    box-sizing: border-box;
-
-    &:focus {
-      outline: none;
-      border-color: #3498db;
-      box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.2);
+  
+  .form-group {
+    margin-bottom: 16px;
+    
+    label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: 500;
+      color: #495057;
+    }
+    
+    .form-control {
+      width: 100%;
+      padding: 8px 12px;
+      border: 1px solid #ced4da;
+      border-radius: 4px;
+      font-size: 14px;
+      
+      &:focus {
+        border-color: #80bdff;
+        outline: 0;
+        box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+      }
     }
   }
-}
-
-.button-group {
-  display: flex;
-  gap: 10px;
+  
+  .button-group {
+    display: flex;
+    gap: 10px;
+    justify-content: flex-end;
+    margin-top: 20px;
+    
+    button {
+      padding: 8px 16px;
+      border-radius: 4px;
+      border: none;
+      font-size: 14px;
+      cursor: pointer;
+    }
+    
+    .update-button {
+      background-color: #17a2b8;
+      color: white;
+      
+      &:hover {
+        background-color: #138496;
+      }
+    }
+    
+    .cancel-button {
+      background-color: #6c757d;
+      color: white;
+      
+      &:hover {
+        background-color: #5a6268;
+      }
+    }
+  }
 }
 
 @media (max-width: 768px) {

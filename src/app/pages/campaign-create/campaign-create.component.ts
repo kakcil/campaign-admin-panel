@@ -1,13 +1,13 @@
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { NgIf } from '@angular/common';
-import { Router } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { CampaignService } from '../../services/campaign.service';
 
 @Component({
   selector: 'app-campaign-create',
   standalone: true,
-  imports: [FormsModule, NgIf],
+  imports: [FormsModule, NgIf, RouterModule],
   templateUrl: './campaign-create.component.html',
   styleUrl: './campaign-create.component.scss'
 })

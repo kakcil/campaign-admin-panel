@@ -1,5 +1,4 @@
 <div class="campaign-create-container">
-  <h2>Create Campaign</h2>
   
   <form (ngSubmit)="createCampaign()" #campaignForm="ngForm">
     <div class="form-group">
@@ -12,7 +11,10 @@
       <textarea [(ngModel)]="description" name="description" required class="form-control" rows="5"></textarea>
     </div>
 
-    <button type="submit" [disabled]="!campaignForm.form.valid" class="save-button">Save</button>
+    <div class="button-group">
+      <button type="submit" [disabled]="!campaignForm.form.valid" class="save-button">Save Campaign</button>
+      <button type="button" routerLink="/dashboard/campaigns" class="cancel-button">Cancel</button>
+    </div>
 
     <p *ngIf="successMessage" class="success-message">{{ successMessage }}</p>
   </form>
