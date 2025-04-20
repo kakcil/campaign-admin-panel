@@ -1,3 +1,56 @@
 <div class="campaign-list-container">
-  <h2>Campaign List</h2>
+  
+  <div *ngIf="campaigns.length === 0" class="no-campaigns">
+    No campaigns available. Create one from the sidebar menu.
+  </div>
+  
+  <div *ngFor="let campaign of campaigns" class="campaign-card">
+    <div class="score-section">
+      <div class="score-value">{{ campaign.score }}</div>
+      <div class="score-label">Score</div>
+      <div class="score-actions">
+        <button class="score-icon-button inc" (click)="changeScore(campaign.id, 1)">+</button>
+        <button class="score-icon-button dec" (click)="changeScore(campaign.id, -1)">-</button>
+      </div>
+    </div>
+    
+    <div class="content-section">
+      <h3 class="campaign-title">{{ campaign.title }}</h3>
+      <p class="campaign-description">{{ campaign.description }}</p>
+    </div>
+    
+    <div class="actions-section">
+      <div class="action-buttons">
+        <button class="update-button" (click)="openUpdateModal(campaign)">Update</button>
+        <button class="delete-button" (click)="deleteCampaign(campaign.id)">Delete</button>
+      </div>
+      <div class="date-info">
+        <span class="date-label">Date</span>
+        <span class="date-value">{{ campaign.date }}</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Update Modal -->
+  <div *ngIf="selectedCampaign" class="modal-overlay">
+    <div class="modal">
+      <h3>Update Campaign</h3>
+      <form (ngSubmit)="updateCampaign()">
+        <div class="form-group">
+          <label for="editTitle">Title</label>
+          <input [(ngModel)]="selectedCampaign.title" name="editTitle" id="editTitle" required class="form-control" />
+        </div>
+        
+        <div class="form-group">
+          <label for="editDesc">Description</label>
+          <textarea [(ngModel)]="selectedCampaign.description" name="editDesc" id="editDesc" required class="form-control" rows="5"></textarea>
+        </div>
+        
+        <div class="button-group">
+          <button type="submit" class="update-button">Update</button>
+          <button type="button" class="cancel-button" (click)="selectedCampaign = null">Cancel</button>
+        </div>
+      </form>
+    </div>
+  </div>
 </div>
