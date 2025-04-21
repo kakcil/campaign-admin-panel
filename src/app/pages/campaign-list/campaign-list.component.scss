@@ -290,6 +290,38 @@
       }
     }
   }
+
+  &.delete-modal {
+    .confirm-message {
+      font-size: 16px;
+      line-height: 1.5;
+      margin-bottom: 10px;
+      color: var(--on-surface-high);
+      text-align: center;
+    }
+    
+    .warning-message {
+      font-size: 14px;
+      color: var(--danger);
+      margin-bottom: 20px;
+      text-align: center;
+    }
+    
+    .button-group {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+    }
+    
+    .delete-button {
+      background-color: var(--danger);
+      color: var(--danger-contrast);
+      
+      &:hover {
+        background-color: var(--danger-dark);
+      }
+    }
+  }
 }
 
 @media (max-width: 768px) {

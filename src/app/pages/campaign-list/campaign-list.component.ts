@@ -14,6 +14,7 @@ import { CampaignService, Campaign } from '../../services/campaign.service';
 export class CampaignListComponent implements OnInit {
   campaigns: Campaign[] = [];
   selectedCampaign: Campaign | null = null;
+  campaignToDelete: Campaign | null = null;
 
   constructor(private campaignService: CampaignService) {}
 
@@ -30,9 +31,20 @@ export class CampaignListComponent implements OnInit {
     this.loadCampaigns(); //updates the list
   }
 
-  deleteCampaign(id: number) {
-    this.campaignService.deleteCampaign(id);
-    this.loadCampaigns(); //updates the list
+  openDeleteModal(campaign: Campaign) {
+    this.campaignToDelete = campaign;
+  }
+
+  deleteCampaign() {
+    if (this.campaignToDelete) {
+      this.campaignService.deleteCampaign(this.campaignToDelete.id);
+      this.loadCampaigns(); // updates the list
+      this.campaignToDelete = null;
+    }
+  }
+
+  cancelDelete() {
+    this.campaignToDelete = null;
   }
 
   openUpdateModal(campaign: Campaign) {
